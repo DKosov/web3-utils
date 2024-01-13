@@ -2,7 +2,7 @@ from typing import Optional, TypeVar, cast
 from enum import Enum
 from typing_extensions import ParamSpec
 from eth_typing import ChecksumAddress
-from pydantic import BaseModel, ConstrainedStr
+from pydantic import BaseModel, StringConstraints
 from web3.middleware import async_geth_poa_middleware
 from web3 import AsyncHTTPProvider, AsyncWeb3, Web3
 from web3.eth import AsyncEth
@@ -50,7 +50,7 @@ class ChainId(int, Enum):
     BCH = -202
 
 
-class LowerStr(ConstrainedStr):
+class LowerStr(StringConstraints):
     to_lower = True
 
 
