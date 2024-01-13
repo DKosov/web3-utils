@@ -15,7 +15,7 @@ def load_requirements(fname: str) -> list:
 
 setup(
     name="web3_utils",
-    version="0.0.2",
+    version="0.0.3",
     platforms='all',
     python_requires='>=3.8',
     packages=find_packages(exclude=['tests']),
