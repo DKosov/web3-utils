@@ -1,4 +1,4 @@
-from web3.types import ABIFunction
+from eth_typing import ABIFunction
 
 
 tryAggregate_abi: ABIFunction = {

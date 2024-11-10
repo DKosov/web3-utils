@@ -1,7 +1,6 @@
 from typing import Any, Callable, cast, Union
-from eth_typing import HexStr
+from eth_typing import HexStr, ABIFunction
 from eth_utils import encode_hex, function_abi_to_4byte_selector
-from web3.types import ABIFunction
 
 
 ABIFunctionOrDict = Union[dict[str, Any], ABIFunction]

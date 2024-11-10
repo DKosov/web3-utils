@@ -3,7 +3,7 @@ from enum import Enum
 from typing_extensions import ParamSpec
 from eth_typing import ChecksumAddress
 from pydantic import BaseModel, StringConstraints
-from web3.middleware import async_geth_poa_middleware
+from web3.middleware import ExtraDataToPOAMiddleware
 from web3 import AsyncHTTPProvider, AsyncWeb3, Web3
 from web3.eth import AsyncEth
 
@@ -109,13 +109,13 @@ class Chain:
     _delays: list[float]
 
     def __init__(
-        self, chain_id: ChainId, rpc_url: str, default_weth_address: str,seconds_between_updates: float = .33
+        self, chain_id: ChainId, rpc_url: str, default_weth_address: str, seconds_between_updates: float = .33
     ):
         self.chain_id = chain_id
         self.seconds_between_updates = seconds_between_updates
-        self.web3 = AsyncWeb3(Web3.AsyncHTTPProvider(rpc_url, request_kwargs={'timeout': 60}), modules={"eth": (AsyncEth,)}, middlewares=[])
+        self.web3 = AsyncWeb3(AsyncHTTPProvider(rpc_url, request_kwargs={'timeout': 60}), modules={"eth": (AsyncEth,)}, middlewares=[])
         self.default_weth_address = Web3.to_checksum_address(default_weth_address)
-        self.web3.middleware_onion.inject(async_geth_poa_middleware, layer=0)
+        self.web3.middleware_onion.inject(ExtraDataToPOAMiddleware, layer=0)
         self._delays = []
 
     def set_timeout(self, timeout: float) -> None:
