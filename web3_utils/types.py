@@ -113,7 +113,7 @@ class Chain:
     ):
         self.chain_id = chain_id
         self.seconds_between_updates = seconds_between_updates
-        self.web3 = AsyncWeb3(AsyncHTTPProvider(rpc_url, request_kwargs={'timeout': 60}), modules={"eth": (AsyncEth,)}, middlewares=[])
+        self.web3 = AsyncWeb3(AsyncHTTPProvider(rpc_url, request_kwargs={'timeout': 60}), modules={"eth": (AsyncEth,)})
         self.default_weth_address = Web3.to_checksum_address(default_weth_address)
         self.web3.middleware_onion.inject(ExtraDataToPOAMiddleware, layer=0)
         self._delays = []
