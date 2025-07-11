@@ -48,6 +48,8 @@ class ChainId(int, Enum):
     BTC = -200
     LTC = -201
     BCH = -202
+    BASE = 8453
+    UNICHAIN = 130
 
 
 class LowerStr(StringConstraints):
