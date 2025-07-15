@@ -27,4 +27,6 @@ MULTICALL_ADDRESSES: dict[ChainId, ChecksumAddress] = {
     ChainId.MOONRIVER: Web3.to_checksum_address("0x270f2F35bED92B7A59eA5F08F6B3fd34c8D9D9b5"),
     ChainId.AURORA: Web3.to_checksum_address("0xe0e3887b158F7F9c80c835a61ED809389BC08d1b"),
     ChainId.CUBE: Web3.to_checksum_address("0x511b6bdf973bccda108059f082807bc5f2ef6b8b"),
+    ChainId.BASE: Web3.to_checksum_address("0xcA11bde05977b3631167028862bE2a173976CA11"),
+    ChainId.UNICHAIN: Web3.to_checksum_address("0xcA11bde05977b3631167028862bE2a173976CA11"),
 }

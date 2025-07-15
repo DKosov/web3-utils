@@ -1,4 +1,4 @@
-from typing import Any, Iterable
+from typing import Any, Iterable, Optional
 from web3.types import TxParams
 from eth_typing import ChecksumAddress
 from eth_abi.codec import ABICodec
@@ -21,12 +21,13 @@ def build_multicall(
     return {"to": contract_address, "data": to_hex(HexBytes(constants.tryAggregate_selector) + tx_data)}
 
 
-async def get(chain: Chain, calls: list[Call]) -> list[Any]:
-    tx = build_multicall(
-        codec=chain.web3.codec,
-        contract_address=constants.MULTICALL_ADDRESSES[chain.chain_id],
-        data=[(i.address, i.data) for i in calls]
-    )
+async def get(chain: Chain, calls: list[Call], tx: Optional[TxParams] = None) -> list[Any]:
+    if tx is None:
+        tx = build_multicall(
+            codec=chain.web3.codec,
+            contract_address=constants.MULTICALL_ADDRESSES[chain.chain_id],
+            data=[(i.address, i.data) for i in calls]
+        )
     tx_raw_data = await chain.web3.eth.call(tx) # type: ignore
     output_data_multi: Iterable[tuple[bool, bytes]] = chain.web3.codec.decode(constants.tryAggregate_output_types, tx_raw_data)[0]  # 0.0005030632019042969
     res = [
