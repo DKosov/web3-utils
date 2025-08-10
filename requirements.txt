@@ -1,2 +1,2 @@
 web3==7.5.0
-pydantic>=2.4,<2.6
+pydantic==2.11.7
