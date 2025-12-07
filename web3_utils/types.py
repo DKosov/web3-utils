@@ -31,6 +31,7 @@ class ChainId(int, Enum):
     MOONBEAM = 1284
     MOONRIVER = 1285
     ARBITRUM = 42161
+    INK = 57073
     AVAX = 43114
     CELO = 42220
     MUMBAI = 80001
